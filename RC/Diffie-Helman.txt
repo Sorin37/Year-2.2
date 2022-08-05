@@ -1,0 +1,55 @@
+Algoritmul Diffie-Hellman de generare a cheii de criptare
+Fie nr prim p si radacina sa primitiva -> a
+
+a^1 mod p    |
+a^2 mod p    |
+.	     |=> {1, 2, 3... p-1}
+.	     |
+.	     |
+a^(p-1) mod p|
+
+Ex: p=7; a=3
+3^1 mod 7 = 3
+3^2 mod 7 = 2
+3^3 mod 7 = 6
+3^4 mod 7 = 4
+3^5 mod 7 = 5
+3^6 mod 7 = 1
+
+Calculatorul A: p, a (sunt cunoscute)
+- se genereaza Xa < p
+- se calculeaza Ya = a^Xa mod p
+- calc A trimite Ya lui B
+- se calc cheia K = Yb ^ Xa mod p
+
+Calculatorul B: p, a (sunt cunoscute)
+- se genereaza Xb < p
+- se calculeaza Yb = a^Xb mod p
+- calc B trimite Yb lui A
+- se calc cheia K = Ya ^ Xb mod p
+
+Ex:
+
+A: 
+Xa = 1 < 7
+Ya = 3^1 mod 7 = 3   
+Ya = Yb = 2
+K = 2^1 mod 7 = 2
+B: 
+Xb = 2 < 7
+Yb = 3^2 mod 7 = 2
+Yb = Ya = 3
+K = 3^2 mod 7 = 2
+
+Cifrul lui Caesar
+mesaj = test
+K = 2
+mesaj_criptat =  vguv
+
+pentru mesaj = xyz
+mesaj_criptat = zab
+
+Tema 5: 
+-vor comunica doua aplicatii client server, isi transmit mesaje criptate pana la "Close connection"
+-dar pana atunci trebuie generate cheile
+-sa se faca verificarea ca a este radacina primitiva a numarului prim p, si ca p este numar prim
